@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/87c6a4cb68.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="style2.css">
+</head>
+
+<body>
+  <!-- друга сторінка редактора- конструкторa таблиць та списків- кнопки меню -->
+  <div id="header">
+    <div id="btnCont2" class="btn-group">
+      <button onclick="save()" type="button" class="btn btn-light"><i class="fas fa-save"></i></button>
+      <button type="button" data-toggle="modal" class="btn btn-light" data-target="#myModal4"><i
+          class="fas fa-table"></i></button>
+      <button type="button" data-toggle="modal" class="btn btn-light" data-target="#myModal5"><i
+          class="fas fa-list-alt"></i></button>
+      <button type="button" data-toggle="modal" class="btn btn-light" data-target="#myModal6"><i
+          class="fas fa-list-ol"></i></button>
+    </div>
+    <!-- модалки створення списків та таблиць -->
+    <div class="modal fade" id="myModal6">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Create OL</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <form action="/action_page.php" name="fList2" class="needs-validation" novalidate>
+              <div class="form-group">Count li item
+                <input type="text" class="form-control" id="uname" placeholder="Enter number" name="countLiOl" required>
+              </div>
+              <div class="form-group">Type mark of list
+                <select class="form-control" id="uname" name="typeMarkOl" required>
+                  <option selected disabled>choose style</option>
+                  <option>1</option>
+                  <option>I</option>
+                  <option>i</option>
+                  <option>A</option>
+                  <option>a</option>
+                </select>
+                <div class="invalid-feedback">Invalid value.</div>
+              </div>
+              <button type="button" class="btn btn-danger" style="width: 220px; margin-right: 20px;"
+                onclick="reset()">Reset</button>
+              <button type="submit" class="btn btn-success" data-dismiss="modal" style="width: 220px;"
+                onclick="listOl()">Create list</button>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="modal fade" id="myModal5">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create UL</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form action="/action_page.php" name="fList1">
+            <div class="form-group">Count li item
+              <input type="email" class="form-control" id="email" placeholder="Enter email" name="countLiUl">
+            </div>
+            <div class="form-group">Type mark of list
+              <select class="form-control" id="sel1" name="typeMarkUl">
+                <option selected disabled>choose style</option>
+                <option>circle</option>
+                <option>disc</option>
+                <option>square</option>
+              </select></div>
+            <button type="button" class="btn btn-danger" style="width: 220px; margin-right: 20px;"
+              onclick="reset()">Reset</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" style="width: 220px;"
+              onclick="listUl()">Create list</button>
+
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+  <div class="modal fade" id="myModal4">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Create table</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form name="fTable">
+            <div class="row">
+              <div class="col">Count TR
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="countTr">
+              </div>
+              <div class="col">Count TD
+                <input type="text" class="form-control" placeholder="Enter password" name="countTd">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">Width of TD
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="widthTd">
+              </div>
+              <div class="col">Height of TD
+                <input type="text" class="form-control" placeholder="Enter password" name="heightTd">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">Width of border
+                <input type="text" class="form-control" id="email" placeholder="Enter email" name="widthBd"
+                  style="width: 217px;">
+              </div>
+              <div class="form-group" style="padding-right: 10px;">Style of border
+
+                <select class="form-control" id="sel1" name="styleBd" style="width: 100px;">
+                  <option selected disabled>choose style</option>
+                  <option>dotted</option>
+                  <option>dashed</option>
+                  <option>solid</option>
+                  <option>double</option>
+                  <option>groove</option>
+                  <option>ridge</option>
+                  <option>inset</option>
+                  <option>outset</option>
+                </select></div>
+              <div class="form-group" style="padding-right: 8px;">Color of border
+                <select class="form-control" id="sel1" name="colorBd" style="width: 100px;">
+                  <option selected disabled>choose color</option>
+                  <option>black</option>
+                  <option>red</option>
+                  <option>green</option>
+                  <option>blue</option>
+                  <option>yellow</option>
+                  <option>white</option>
+                  <option>gray</option>
+                  <option>pink</option>
+                </select></div>
+            </div>
+            <button type="button" class="btn btn-danger" style="width: 220px; margin-right: 20px;"
+              onclick="reset()">Reset</button>
+            <button type="button" class="btn btn-success" data-dismiss="modal" style="width: 220px;"
+              onclick="table()">Create table</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+  <!-- перша сторінка редактора з меню кнопок, які змінюють стилі -->
+  <div id="btnCont">
+    <button onclick="tag()" class="btn btn-light"><i class="fas fa-code"></i></button>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button onclick="bold()" class="btn btn-light" style="margin-left: 5px;"><i class="fas fa-bold"></i></button>
+      <button onclick="italic()" class="btn btn-light"><i class="fas fa-italic"></i></button>
+      <button onclick="underline()" class="btn btn-light"><i class="fas fa-underline"></i></button>
+      <button onclick="stressed()" class="btn btn-light"><i class="fas fa-strikethrough"></i></button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <button onclick="textLeft()" class="btn btn-light" style="margin-left: 5px;"><i
+          class="fas fa-align-left"></i></button>
+      <button onclick="textCenter()" class="btn btn-light"><i class="fas fa-align-center"></i></button>
+      <button onclick="textRight()" class="btn btn-light"><i class="fas fa-align-right"></i></button>
+    </div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button id="btnGroupDrop" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="margin-left: 5px;"><i class="fas fa-font"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" id="drop1">
+          <a class="dropdown-item" href="#">Arial</a>
+          <a class="dropdown-item" href="#">Georgia</a>
+          <a class="dropdown-item" href="#">Impact</a>
+          <a class="dropdown-item" href="#">Times New Roman</a>
+          <a class="dropdown-item" href="#">Monospace</a>
+          <a class="dropdown-item" href="#">Sans-serif</a>
+        </div>
+      </div>
+
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button id="btnGroupDrop" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"><i class="fas fa-text-height"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" id="drop2">
+          <a class="dropdown-item" href="#">12px</a>
+          <a class="dropdown-item" href="#">14px</a>
+          <a class="dropdown-item" href="#">16px</a>
+          <a class="dropdown-item" href="#">18px</a>
+          <a class="dropdown-item" href="#">20px</a>
+          <a class="dropdown-item" href="#">22px</a>
+          <a class="dropdown-item" href="#">25px</a>
+          <a class="dropdown-item" href="#">30px</a>
+        </div>
+      </div>
+      <button onclick="" data-toggle="modal" data-target="#myModal" class="btn btn-light"><i
+          class="fas fa-palette"></i></button>
+
+      <button onclick="" data-toggle="modal" data-target="#myModal2" class="btn btn-light"><i
+          class="fas fa-image"></i></button>
+    </div>
+
+    <button onclick="" data-toggle="modal" data-target="#myModal3" style="margin-left: 5px;" class="btn btn-light"><i
+        class="fas fa-lock"></i></button>
+
+  </div>
+  </div>
+
+  <!-- головне поле для відображення зміненого тексту та стилів застосованих в редакторі -->
+  <div id="one">
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, eaque.</p>
+  </div>
+
+  <!-- текст ареа, яка відкривається при кліку на кнопку "тег" та дозволяє змінювати текст вручну. -->
+  <div id="two">
+    <form name="fEdit">
+      <textarea class="textArea" name="textArea"></textarea>
+    </form>
+  </div>
+
+
+  <!-- модалка вибору кольорів тексту -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose text color</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        </div>
+        <div id="modal-body">
+          <div class="colors" style="background-color: aqua;"></div>
+          <div class="colors" style="background-color: red;"></div>
+          <div class="colors" style="background-color: lime;"></div>
+          <div class="colors" style="background-color: yellowgreen;"></div>
+          <div class="colors" style="background-color: deeppink;"></div>
+          <div class="colors" style="background-color: orange;"></div>
+          <div class="colors" style="background-color: blue;"></div>
+          <div class="colors" style="background-color: violet;"></div>
+          <div class="colors" style="background-color: yellow;"></div>
+          <div class="colors" style="background-color: cadetblue;"></div>
+          <div class="colors" style="background-color: chocolate;"></div>
+          <div class="colors" style="background-color: coral;"></div>
+          <div class="colors" style="background-color: crimson;"></div>
+          <div class="colors" style="background-color: darkmagenta;"></div>
+          <div class="colors" style="background-color: darksalmon;"></div>
+          <div class="colors" style="background-color: deepskyblue;"></div>
+          <div class="colors" style="background-color: fuchsia;"></div>
+          <div class="colors" style="background-color: hotpink;"></div>
+          <div class="colors" style="background-color: olivedrab;"></div>
+          <div class="colors" style="background-color: orangered;"></div>
+          <div class="colors" style="background-color: mediumturquoise;"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  </div>
+
+
+  <!-- модалка вибору кольорів, зображення фону -->
+  <div class="modal fade" id="myModal2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Choose background-color or image</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="container">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#modal-body2">Colors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#modal-body3">Images</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#modal-body33">Files</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div id="modal-body2" ​class="container tab-pane active">
+
+              <div class="colors" style="background-color: aqua;"></div>
+              <div class="colors" style="background-color: red;"></div>
+              <div class="colors" style="background-color: lime;"></div>
+              <div class="colors" style="background-color: yellowgreen;"></div>
+              <div class="colors" style="background-color: deeppink;"></div>
+              <div class="colors" style="background-color: orange;"></div>
+              <div class="colors" style="background-color: blue;"></div>
+              <div class="colors" style="background-color: violet;"></div>
+              <div class="colors" style="background-color: yellow;"></div>
+              <div class="colors" style="background-color: cadetblue;"></div>
+              <div class="colors" style="background-color: chocolate;"></div>
+              <div class="colors" style="background-color: coral;"></div>
+              <div class="colors" style="background-color: crimson;"></div>
+              <div class="colors" style="background-color: darkmagenta;"></div>
+              <div class="colors" style="background-color: darksalmon;"></div>
+              <div class="colors" style="background-color: deepskyblue;"></div>
+              <div class="colors" style="background-color: fuchsia;"></div>
+              <div class="colors" style="background-color: hotpink;"></div>
+              <div class="colors" style="background-color: olivedrab;"></div>
+              <div class="colors" style="background-color: orangered;"></div>
+              <div class="colors" style="background-color: mediumturquoise;"></div>
+
+            </div>
+
+            <div id="modal-body3" class="container tab-pane fade">
+
+              <div class="image" style="background-image: url(images/1.jpg);"></div>
+              <div class="image" style="background-image: url(images/2.jpg);"></div>
+              <div class="image" style="background-image: url(images/3.jpg);"></div>
+              <div class="image" style="background-image: url(images/4.jpg);"></div>
+              <div class="image" style="background-image: url(images/5.jpg);"></div>
+              <div class="image" style="background-image: url(images/6.jpg);"></div>
+              <div class="image" style="background-image: url(images/7.jpg);"></div>
+              <div class="image" style="background-image: url(images/8.jpg);"></div>
+              <div class="image" style="background-image: url(images/10.jpg);"></div>
+
+            </div>
+
+            <div class="container tab-pane fade" id="modal-body33">
+              <form action="/action_page.php" name="f1">
+                <div class="custom-file mb-3">
+                  <input type="file" class="custom-file-input" id="customFile" name="filename">
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </form>
+            </div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  </div>
+
+
+  <!-- модалка підтвердження, форма валідації -->
+  <div class="modal fade" id="myModal3" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Sign In</h4>
+        </div>
+        <div class="modal-body">
+          <form action="/action_page.php" name="fValid" class="was-validated" onsubmit="return false">
+
+            <div class="form-group">
+              <input type="text" class="form-control" id="uname" placeholder="Enter username" name="uname" required>
+              <div class="valid-feedback">Valid.</div>
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
+              <div class="valid-feedback">Valid.</div>
+              <div class="invalid-feedback">Please fill out this field.</div>
+            </div>
+
+            <button type="submit" class="btn btn-secondary" style="width: 470px;" name="signIn">Sign in</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
